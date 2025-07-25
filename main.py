@@ -1,7 +1,14 @@
-from modules.morse_coder import MorseCode, MorseCodeEncoder
+from modules.morse_coder import MorseCode, MorseCodeEncoder, MorseCodeDecoder
 
-mc = MorseCode()
-mc.unencoded_message = "Hello World My name is Gerald Baron the 3rd" 
-encoder = MorseCodeEncoder(mc)
+ec = MorseCode()
+ec.decoded_message = "Hello World My name is Gerald Baron the 3rd" 
+
+encoder = MorseCodeEncoder(ec)
 encoder.encode()
-encoder.display()
+print("Encoded Message: " + ec.encoded_message)
+
+dc = MorseCode()
+dc.encoded_message = ec.encoded_message
+decoder = MorseCodeDecoder(dc)
+decoder.decode()
+print("Decoded Message: " + dc.decoded_message)

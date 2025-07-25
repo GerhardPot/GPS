@@ -42,5 +42,7 @@ class MorseCode:
             '0':'-----'
         }
 
-        self.unencoded_message = ""
+        self.inverted_morse_code_dictionary = {v: k for k, v in self.morse_code_dictionary.items()}
+
+        self.decoded_message = ""
         self.encoded_message = ""

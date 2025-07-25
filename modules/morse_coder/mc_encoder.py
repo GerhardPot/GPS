@@ -6,7 +6,7 @@ class MorseCodeEncoder:
 
     def encode(self):
         # Get the unencoded string and make it uppercase for the dictionnary lookup
-        unencoded_list = list(self.morse_code.unencoded_message.upper())
+        unencoded_list = list(self.morse_code.decoded_message.upper())
 
         # Create a blank list to hold encoded characters
         encoded_list = []
