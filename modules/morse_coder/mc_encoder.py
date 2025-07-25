@@ -1,56 +1,30 @@
-class MorseCodeEncoder:
-    def __init__(self, unencoded_message):
-        self.unencoded_message = unencoded_message.upper()
-        self.encoded_message = []
-        self.morse_code_dictionary = {
-            # Letters
-            'A':'.-',
-            'B':'-...',
-            'C':'-.-.',
-            'D':'-..',
-            'E':'.',
-            'F':'..-.',
-            'G':'--.',
-            'H':'....',
-            'I':'..',
-            'J':'.---',
-            'K':'-.-',
-            'L':'.-..',
-            'M':'--',
-            'N':'-.',
-            'O':'---',
-            'P':'.--.',
-            'Q':'--.-',
-            'R':'.-.',
-            'S':'...',
-            'T':'-',
-            'U':'..-',
-            'V':'...-',
-            'W':'.--',
-            'X':'-..-',
-            'Y':'-.--',
-            'Z':'--..',
+from .mc_code import MorseCode
 
-            # Digits
-            '1':'.----',
-            '2':'..---',
-            '3':'...--',
-            '4':'....-',
-            '5':'.....',
-            '6':'-....',
-            '7':'--...',
-            '8':'---..',
-            '9':'----.',
-            '0':'-----'
-        }
+class MorseCodeEncoder:
+    def __init__(self, morse_code: MorseCode):
+        self.morse_code = morse_code
 
     def encode(self):
-        for character in self.unencoded_message:
+        # Get the unencoded string and make it uppercase for the dictionnary lookup
+        unencoded_list = list(self.morse_code.unencoded_message.upper())
+
+        # Create a blank list to hold encoded characters
+        encoded_list = []
+
+        # Loop through each character in the unencoded list for the encoding process
+        for character in unencoded_list:
+
+            # If the character is a space, make it a slash to indicate a space in Morse Code
             if character == ' ':
-                self.encoded_message.append('/')
-            elif character in self.morse_code_dictionary:
-                self.encoded_message.append(self.morse_code_dictionary[character])
+                encoded_list.append('/')
+
+            # If the character is a letter or digit, get the value for that character from the dictionary
+            elif character in self.morse_code.morse_code_dictionary:
+                encoded_list.append(self.morse_code.morse_code_dictionary[character])
+
+        # Join the encoded list into a string with spaces between each character
+        self.morse_code.encoded_message = ' '.join(encoded_list)
         print("Message encoded successfully.")
 
     def display(self):
-        print("Encoded Message: " + ' '.join(self.encoded_message))
+        print("Encoded Message: " + self.morse_code.encoded_message)
